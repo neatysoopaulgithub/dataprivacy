@@ -1,0 +1,17 @@
+user_data = {
+    "email": "user@example.com",
+    "consent": True,
+    "age": 17,
+    "location": "EU"
+}
+
+def check_gdpr(user):
+    alerts = []
+    if user.get("location") == "EU":
+        if not user.get("consent"):
+            alerts.append("GDPR Alert: Consent required for EU user")
+        if user.get("age", 0) < 16:
+            alerts.append("GDPR Alert: Parental consent required for underage user")
+    return alerts
+
+print(check_gdpr(user_data))
